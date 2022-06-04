@@ -1,0 +1,12 @@
+# User-specific files
+*.dbc
+[Dd]efinitions/
+*.bat
+*.exe
+*.config
+ExportResult.txt
+
+# Embeded VS stuff
+ProjectSettings.json
+slnx.sqlite
+*.suo

@@ -102,7 +102,7 @@ function GameTooltip_OnSetItem(self)
 	local item, link = self:GetItem();
 	
 	for i = 2, self:NumLines() do
-		if ((_G[name .. i]:GetText()) == string.format(ITEM_CREATED_BY, "Testname")) then
+		if ((_G[name .. i]:GetText()) == string.format(ITEM_CREATED_BY, "Server")) then
 			-- Realm First item text feature
 			_G[name .. i]:SetText("\"The very first of its kind. When claimed, no other\n had yet to exist within the realm of Azeroth.\"");
 			_G[name .. i]:SetTextColor(255 / 255, 209 / 255, 0 / 255);
@@ -116,6 +116,7 @@ function GameTooltip_OnSetItem(self)
 		local stats = GetItemStats(link);
 		local itemName, itemLink, itemRarity, itemLevel = GetItemInfo(link);
 		local scaleDataValue = GetItemScalingDataFromLink(link);
+		local itemId = GetItemIdFromItemLink(link);
 		
 		local foundHeroicLine = false;
 		for i = 2, self:NumLines() do
@@ -132,7 +133,7 @@ function GameTooltip_OnSetItem(self)
 						-- We have some issues with certain stats that are spells that the WoW client won't consider in GetItemStats
 						-- Therefore the complex scaling of tooltips is handled in native code
 					
-						local newLine, scaled = ItemScaleTooltipLine(_G[name .. i]:GetText(), scaleDataValue, itemLevel);
+						local newLine, scaled = ItemScaleTooltipLine(_G[name .. i]:GetText(), scaleDataValue, itemLevel, itemId);
 						if (scaled) then
 							_G[name .. i]:SetText(newLine);
 						end
@@ -150,7 +151,13 @@ function GameTooltip_OnSetItem(self)
 			if (_G[name .. i] and _G[name .. i]:GetText() == itemName) then
 				local origText = _G[name .. i + 1]:GetText();
 				if (origText) then
-					_G[name .. i + 1]:SetText("|cff00FF00Richie Mode " .. scaleDataValue .. "\n" .. "|cffFFFFFF" .. origText);
+					local r, g, b = _G[name .. i + 1]:GetTextColor();
+					-- Sometimes the line is a specific color and if we use embeded colors then the original text color won't work, we must embed a color for the original text too
+					local hr = string.format("%.2x", r * 255);
+					local hg = string.format("%.2x", g * 255);
+					local hb = string.format("%.2x", b * 255);
+					_G[name .. i + 1]:SetText("|cff00FF00Richie Mode " .. scaleDataValue .. "|cffFFFFFF" .. "\r" .. "|cFF" .. hr .. hg .. hb .. origText .. "|cffFFFFFF", r, g, b, true);
+					_G[name .. i + 1]:GetFontObject():SetJustifyH("LEFT"); -- Without this compare tooltips center justify the two hacked lines above
 				end
 				return;
 			end
@@ -194,7 +201,8 @@ function GameTooltip_OnLoad(self)
 	RegisterNewTooltipScalingEntry(ITEM_SPELL_TRIGGER_ONEQUIP .. " " .. ITEM_MOD_DODGE_RATING, 0);
 	RegisterNewTooltipScalingEntry(ITEM_SPELL_TRIGGER_ONEQUIP .. " " .. ITEM_MOD_PARRY_RATING, 0);
 	RegisterNewTooltipScalingEntry(ITEM_SPELL_TRIGGER_ONEQUIP .. " " .. ITEM_MOD_ATTACK_POWER, 0);
-	RegisterNewTooltipScalingEntry(DPS_TEMPLATE, 0, true);
+	RegisterNewTooltipScalingEntry(DPS_TEMPLATE, 3, true);
+	RegisterNewTooltipScalingEntry(DAMAGE_TEMPLATE, 3, true);
 	
 	-- Primary stats because GetItemStats is SO unreliable
 	RegisterNewPrimaryStatTooltipScalingEntry(ITEM_MOD_INTELLECT_SHORT);
@@ -205,7 +213,8 @@ function GameTooltip_OnLoad(self)
 	
 	-- Armor and def stuff
 	RegisterNewTooltipScalingEntry(ARMOR_TEMPLATE, 2);
-	RegisterNewTooltipScalingEntry(SHIELD_BLOCK_TEMPLATE, 0, true)
+	RegisterNewTooltipScalingEntry(SHIELD_BLOCK_TEMPLATE, 2, true);
+	RegisterNewTooltipScalingEntry(ITEM_MOD_RESILIENCE_RATING, 1);
 	
 	SetTooltipScalingEntryRegistrationComplete();
 end

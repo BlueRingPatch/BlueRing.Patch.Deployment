@@ -117,6 +117,7 @@ function GameTooltip_OnSetItem(self)
 		local itemName, itemLink, itemRarity, itemLevel = GetItemInfo(link);
 		local scaleDataValue = GetItemScalingDataFromLink(link);
 		local itemId = GetItemIdFromItemLink(link);
+		local scaledType = GetScaledItemTypeFromItemLink(link);
 		
 		local foundHeroicLine = false;
 		for i = 2, self:NumLines() do
@@ -124,11 +125,12 @@ function GameTooltip_OnSetItem(self)
 				if (_G[name .. i]:GetText() == (string.format(ITEM_LEVEL, itemLevel))) then
 					_G[name .. i]:SetText(string.format(ITEM_LEVEL, itemLevel + scaleDataValue)); 	
 				else
-					if (_G[name .. i]:GetText() == ITEM_HEROIC) then
+					if (_G[name .. i]:GetText() == ITEM_HEROIC and scaledType > 0) then
 						-- We embed this check in here for 1 loop perf we
 						-- at try to set the "MODE". The best case is that we actually have a HEROIC tag already and we can replace it
 						foundHeroicLine = true;
-						_G[name .. i]:SetText("Richie Mode " .. scaleDataValue);
+						local scaledLine = GetScaledItemTypeText(scaledType, link);
+						_G[name .. i]:SetText(scaledLine);
 					else
 						-- We have some issues with certain stats that are spells that the WoW client won't consider in GetItemStats
 						-- Therefore the complex scaling of tooltips is handled in native code
@@ -142,7 +144,7 @@ function GameTooltip_OnSetItem(self)
 			end
 		end
 		
-		if (foundHeroicLine) then
+		if (foundHeroicLine or scaledType == 0) then
 			return;
 		end
 		
@@ -156,7 +158,8 @@ function GameTooltip_OnSetItem(self)
 					local hr = string.format("%.2x", r * 255);
 					local hg = string.format("%.2x", g * 255);
 					local hb = string.format("%.2x", b * 255);
-					_G[name .. i + 1]:SetText("|cff00FF00Richie Mode " .. scaleDataValue .. "|cffFFFFFF" .. "\r" .. "|cFF" .. hr .. hg .. hb .. origText .. "|cffFFFFFF", r, g, b, true);
+					local scaledLine = GetScaledItemTypeText(scaledType, link);
+					_G[name .. i + 1]:SetText("|cff00FF00" .. scaledLine .. "|cffFFFFFF" .. "\r" .. "|cFF" .. hr .. hg .. hb .. origText .. "|cffFFFFFF", r, g, b, true);
 					_G[name .. i + 1]:GetFontObject():SetJustifyH("LEFT"); -- Without this compare tooltips center justify the two hacked lines above
 				end
 				return;

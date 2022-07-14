@@ -2799,7 +2799,8 @@ function AchievementFrame_IsComparison()
 end
 
 function AchievementFrame_IsFeatOfStrength()
-	if ( AchievementFrame.selectedTab == 1 and achievementFunctions.selectedCategory == displayCategories[#displayCategories].id ) then
+	-- @HelloKitty: Blizzard was so dumb with this check. They should be ashamed of the original check here
+	if ( AchievementFrame.selectedTab == 1 and achievementFunctions.selectedCategory == FEAT_OF_STRENGTH_ID ) then
 		return true;
 	end
 	return false;

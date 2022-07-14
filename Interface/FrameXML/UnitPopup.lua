@@ -9,6 +9,8 @@ UNITPOPUP_TIMEOUT = 5;
 
 UNITPOPUP_SPACER_SPACING = 6;
 
+UNIT_HEROIC_DUNGEON_LEVEL_REQ = 20;
+
 UnitPopupButtons = { };
 UnitPopupButtons["CANCEL"] = { text = CANCEL, dist = 0, space = 1 };
 UnitPopupButtons["TRADE"] = { text = TRADE, dist = 2 };
@@ -697,7 +699,7 @@ function UnitPopup_HideButtons ()
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			end
 		elseif ( value == "DUNGEON_DIFFICULTY" ) then
-			if ( UnitLevel("player") < 65 and GetDungeonDifficulty() == 1 ) then
+			if ( UnitLevel("player") < UNIT_HEROIC_DUNGEON_LEVEL_REQ and GetDungeonDifficulty() == 1 ) then
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			end
 		elseif ( value == "RAID_DIFFICULTY" ) then

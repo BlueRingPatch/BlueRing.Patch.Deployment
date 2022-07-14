@@ -406,7 +406,12 @@ function SkillFrame_UpdateSkills()
 	local index = 1;
 	for i=offset,  offset + SKILLS_TO_DISPLAY - 1 do
 		if ( i <= numSkills ) then
-			SkillFrame_SetStatusBar(index, i, numSkills, adjustedSkillPoints);
+			local skillName = GetSkillLineInfo(i);
+			if (skillName == "Not Displayed") then
+				break;
+			else
+				SkillFrame_SetStatusBar(index, i, numSkills, adjustedSkillPoints);
+			end
 		else
 			break;
 		end

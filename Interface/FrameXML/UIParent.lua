@@ -94,7 +94,7 @@ UIMenus = {
 };
 
 ITEM_QUALITY_COLORS = { };
-for i = -1, 6 do
+for i = -1, 8 do
 	ITEM_QUALITY_COLORS[i] = { };
 	ITEM_QUALITY_COLORS[i].r,
 	ITEM_QUALITY_COLORS[i].g,

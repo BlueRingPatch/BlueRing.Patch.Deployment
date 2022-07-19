@@ -429,6 +429,11 @@ function BrowseDropDown_Initialize()
 	UIDropDownMenu_AddButton(info);
 	for i=0, getn(ITEM_QUALITY_COLORS)-2  do
 		info.text = _G["ITEM_QUALITY"..i.."_DESC"];
+
+		if (i == 6) then
+			info.text = "Shop Item";
+		end
+
 		info.value = i;
 		info.func = BrowseDropDown_OnClick;
 		info.checked = nil;

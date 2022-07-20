@@ -97,10 +97,10 @@ function ScaleEquipTooltipLine(stats, tooltip, name, localizedModName, statsInde
 end
 
 function GameTooltip_OnSetItem(self)
--- -- Recommended by: https://authors.curseforge.com/forums/world-of-warcraft/general-chat/need-help/216579-working-with-gametooltips-tooltip-scanning
+	-- Recommended by: https://authors.curseforge.com/forums/world-of-warcraft/general-chat/need-help/216579-working-with-gametooltips-tooltip-scanning
 	local name = self:GetName() .. "TextLeft";
 	local item, link = self:GetItem();
-	
+
 	for i = 2, self:NumLines() do
 		if ((_G[name .. i]:GetText()) == string.format(ITEM_CREATED_BY, "Server")) then
 			-- Realm First item text feature
@@ -111,13 +111,21 @@ function GameTooltip_OnSetItem(self)
 	
 	if (HasItemScalingDataInLink(link)) then
 		ClearScalingTooltipTrackingCache();
+
+		local scaleDataValue = GetItemScalingDataFromLink(link);
+		local scaledType = GetScaledItemTypeFromItemLink(link);
+
+		-- Can't always trust regex link, sometimes https://wotlkdb.com/?item=10410
+		-- Fang will have stuff in the link?? No idea why
+		if (scaleDataValue == 0 and scaledType == 0) then
+			return;
+		end
 		
 		-- We must know what stats the item has so we can iterate and search the tooltip for the line and replace it
 		local stats = GetItemStats(link);
 		local itemName, itemLink, itemRarity, itemLevel = GetItemInfo(link);
 		local scaleDataValue = GetItemScalingDataFromLink(link);
 		local itemId = GetItemIdFromItemLink(link);
-		local scaledType = GetScaledItemTypeFromItemLink(link);
 		
 		local foundHeroicLine = false;
 		for i = 2, self:NumLines() do
@@ -132,12 +140,15 @@ function GameTooltip_OnSetItem(self)
 						local scaledLine = GetScaledItemTypeText(scaledType, link);
 						_G[name .. i]:SetText(scaledLine);
 					else
+						-- TODO: This isn't locale independent checking for set ITEM_SET_BONUS
 						-- We have some issues with certain stats that are spells that the WoW client won't consider in GetItemStats
 						-- Therefore the complex scaling of tooltips is handled in native code
-					
-						local newLine, scaled = ItemScaleTooltipLine(_G[name .. i]:GetText(), scaleDataValue, itemLevel, itemId);
-						if (scaled) then
-							_G[name .. i]:SetText(newLine);
+						if (not string.find(_G[name .. i]:GetText(), "Set: ")) then
+							-- Sometimes set bonuses will have stats in them, skip
+							local newLine, scaled = ItemScaleTooltipLine(_G[name .. i]:GetText(), scaleDataValue, itemLevel, itemId);
+							if (scaled) then
+								_G[name .. i]:SetText(newLine);
+							end
 						end
 					end
 				end

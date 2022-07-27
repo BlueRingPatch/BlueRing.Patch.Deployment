@@ -26,10 +26,9 @@ function PVPBattleground_UpdateBattlegrounds()
 	for i=1,GetNumBattlegroundTypes() do
 		frame = _G["BattlegroundType"..currentFrameNum];
 		
-		localizedName, canEnter, isHoliday, isRandom = GetBattlegroundInfo(i);
+		localizedName, canEnter, isHoliday = GetBattlegroundInfo(i);
 		tempString = localizedName;
-		-- @HelloKitty: Use GetServerMaxLevel soon
-		if ( localizedName and ((canEnter and isHoliday) or (isRandom and UnitLevel("player") >= 20) or (canEnter and UnitLevel("player") < 20))) then
+		if ( localizedName and canEnter ) then
 			if ( frame ) then
 				frame.BGindex = i;
 				frame.localizedName = localizedName;

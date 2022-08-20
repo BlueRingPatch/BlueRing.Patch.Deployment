@@ -29,7 +29,8 @@ function PVPBattleground_UpdateBattlegrounds()
 		localizedName, canEnter, isHoliday, isRandom = GetBattlegroundInfo(i);
 		tempString = localizedName;
 		-- @HelloKitty: Use GetServerMaxLevel soon
-		if ( localizedName and ((canEnter and isHoliday) or (isRandom and UnitLevel("player") >= 20) or (canEnter and UnitLevel("player") < 20))) then
+		-- @HelloKitty: Eots CTA hack because no table/dbc seems to allow queue at low levels
+		if ( localizedName and ((canEnter and isHoliday) or (isHoliday and UnitLevel("player") >= 20 and i == 2) or (isRandom and UnitLevel("player") >= 20) or (canEnter and UnitLevel("player") < 20))) then
 			if ( frame ) then
 				frame.BGindex = i;
 				frame.localizedName = localizedName;

@@ -1,6 +1,12 @@
 ADDON_BUTTON_HEIGHT = 16;
 MAX_ADDONS_DISPLAYED = 19;
 
+hooksecurefunc("DisableAllAddOns", function()
+	--if LoadBlueRingAddOns then
+		--LoadBlueRingAddOns()
+	--end
+end)
+
 function UpdateAddonButton()
 	if ( GetNumAddOns() > 0 ) then
 		-- Check to see if any of them are out of date and not disabled
@@ -88,13 +94,30 @@ function AddonList_Update()
 				versionButton:Hide();
 				urlButton:Hide();
 			end
+
+			if name == "Blizzard_Transmog" then
+				checkbox:Hide()
+				TriStateCheckbox_SetState(2, checkbox)
+				EnableAddOn(nil, addonIndex)
+				security = "SECURE"
+				reason = "SECURE"
+			else
+				checkbox:Show()
+			end
+
+			local securityFrame = _G["AddonListEntry"..i.."Security"];
 			securityIcon = _G["AddonListEntry"..i.."SecurityIcon"];
 			if ( security == "SECURE" ) then
 				AddonList_SetSecurityIcon(securityIcon, 1);
+				securityFrame:Show()
 			elseif ( security == "INSECURE" ) then
 				AddonList_SetSecurityIcon(securityIcon, 2);
+				securityFrame:Hide()
 			elseif ( security == "BANNED" ) then
 				AddonList_SetSecurityIcon(securityIcon, 3);
+				securityFrame:Show()
+			else
+				securityFrame:Hide()
 			end
 			_G["AddonListEntry"..i.."Security"].tooltip = _G["ADDON_"..security];
 			string = _G["AddonListEntry"..i.."Status"];
@@ -128,6 +151,13 @@ end
 function AddonTooltip_Update(owner)
 	AddonTooltip.owner = owner;
 	local name, title, notes,_,_,_, security = GetAddOnInfo(owner:GetID());
+	if name == "Blizzard_Transmog" then
+		if (notes) then
+			notes = notes .. "\n\n[This addon is |cffFF9C00protected|r and must be |cff85FF85Enabled|r to play on BlueRing]"
+		else
+			notes = "\n\n[This addon is |cffFF9C00protected|r and must be |cff85FF85Enabled|r to play on BlueRing]"
+		end
+	end
 	if ( security == "BANNED" ) then
 		AddonTooltipTitle:SetText(ADDON_BANNED_TOOLTIP);
 		AddonTooltipNotes:SetText("");

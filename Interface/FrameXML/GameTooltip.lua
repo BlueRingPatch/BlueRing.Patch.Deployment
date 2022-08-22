@@ -101,6 +101,14 @@ function GameTooltip_OnSetItem(self)
 	local name = self:GetName() .. "TextLeft";
 	local item, link = self:GetItem();
 
+	-- @HelloKitty: Transmog embed appearance warning if not collectd
+	if (item and link and IsVisualAppearanceForItemKnown) then -- Maybe they don't have the DLL yet
+		local id = string.match(link, "Hitem:([0-9]+)")
+		if (IsVisualAppearanceForItemKnown(id) == false) then
+			self:AddLine("You haven't collected this appearance", 170 / 255, 171 / 255, 254 / 255);
+		end
+	end
+
 	for i = 2, self:NumLines() do
 		if ((_G[name .. i]:GetText()) == string.format(ITEM_CREATED_BY, "Server")) then
 			-- Realm First item text feature

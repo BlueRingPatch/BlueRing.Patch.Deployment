@@ -1323,6 +1323,15 @@ do  --------- Apply settings on addon loaded
 	end)
 end
 
+function Transmog_DisplayCollectedAppearance(itemId)
+	if (GetItemInfo(itemId)) then
+		DEFAULT_CHAT_FRAME:AddMessage("[" .. GetItemInfo(itemId) .. "] has been added to your appearance collection.", 1.0, 1.0, 0, 5);
+	else
+		-- Some cases where the actual item name cannot be known because it hasn't been queried yet
+		DEFAULT_CHAT_FRAME:AddMessage("A new appearance has been added to your appearance collection.", 1.0, 1.0, 0, 5);
+	end
+end
+
 ---------------- CHAT COMMANDS ----------------
 
 SLASH_TRANSMOG1 = "/transmog"

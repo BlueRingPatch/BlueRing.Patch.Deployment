@@ -102,7 +102,7 @@ function GameTooltip_OnSetItem(self)
 	local item, link = self:GetItem();
 
 	-- @HelloKitty: Transmog embed appearance warning if not collectd
-	if (item and link and IsVisualAppearanceForItemKnown) then -- Maybe they don't have the DLL yet
+	if (item and link and IsVisualAppearanceForItemKnown) then
 		local id = string.match(link, "Hitem:([0-9]+)")
 		if (IsVisualAppearanceForItemKnown(id) == false) then
 			self:AddLine("You haven't collected this appearance", 170 / 255, 171 / 255, 254 / 255);
@@ -138,7 +138,7 @@ function GameTooltip_OnSetItem(self)
 		local foundHeroicLine = false;
 		for i = 2, self:NumLines() do
 			if (_G[name .. i]) then
-				if (_G[name .. i]:GetText() == (string.format(ITEM_LEVEL, itemLevel))) then
+				if (_G[name .. i]:GetText() == (string.format(ITEM_LEVEL, itemLevel)) and _G[name .. i]:GetStringWidth() ~= 0) then -- @HelloKitty: Unsure why but sometimes 0 pixel wide strings exist and thus throw no font error due to addons
 					_G[name .. i]:SetText(string.format(ITEM_LEVEL, itemLevel + scaleDataValue)); 	
 				else
 					if (_G[name .. i]:GetText() == ITEM_HEROIC and scaledType > 0) then
@@ -151,7 +151,7 @@ function GameTooltip_OnSetItem(self)
 						-- TODO: This isn't locale independent checking for set ITEM_SET_BONUS
 						-- We have some issues with certain stats that are spells that the WoW client won't consider in GetItemStats
 						-- Therefore the complex scaling of tooltips is handled in native code
-						if (not string.find(_G[name .. i]:GetText(), "Set: ")) then
+						if (not string.find(_G[name .. i]:GetText(), "Set: ") and _G[name .. i]:GetStringWidth() ~= 0) then -- @HelloKitty: Must check for empty lines due to addons
 							-- Sometimes set bonuses will have stats in them, skip
 							local newLine, scaled = ItemScaleTooltipLine(_G[name .. i]:GetText(), scaleDataValue, itemLevel, itemId);
 							if (scaled) then

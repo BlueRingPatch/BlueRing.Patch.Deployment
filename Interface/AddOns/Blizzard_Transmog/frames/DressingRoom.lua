@@ -30,6 +30,7 @@ local modelX = { -- male = 2, female = 3
 		Scourge =   {male = -0.75, female = -0.75},
 		Tauren =    {male = -0.75, female = -0.75},
 		Troll =     {male = -0.75, female = -0.75},
+		Goblin =    {male = -0.75, female = -0.75},
 	},
 	max = {
 		-- The Alliance
@@ -44,6 +45,7 @@ local modelX = { -- male = 2, female = 3
 		Scourge =   {male = 2.0, female = 3.0},
 		Tauren =    {male = 2.90, female = 2.4},
 		Troll =     {male = 3.0, female = 3.0},
+		Goblin =    {male = 2.6, female = 1.55},
 	},
 }
 
@@ -61,6 +63,7 @@ local modelZ = {
 		Scourge =   {male = -0.80, female = -0.67},
 		Tauren =    {male = -0.80, female = -0.50},
 		Troll =     {male = -0.75, female = -0.75},
+		Goblin =    {male = -0.80, female = -0.60},
 	},
 	max = {
 		-- The Alliance
@@ -75,6 +78,7 @@ local modelZ = {
 		Scourge =   {male = 0.75, female = 0.85},
 		Tauren =    {male = 0.90, female = 1.35},
 		Troll =     {male = 1.25, female = 1.25},
+		Goblin =    {male = 0.52, female = 0.75},
 	},
 }
 

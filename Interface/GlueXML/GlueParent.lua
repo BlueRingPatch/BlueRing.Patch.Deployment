@@ -46,6 +46,8 @@ GlueAmbienceTracks["BLOODELF"] = "GlueScreenBloodElf";
 GlueAmbienceTracks["DARKPORTAL"] = "GlueScreenIntro";
 GlueAmbienceTracks["DEATHKNIGHT"] = "GlueScreenIntro";
 GlueAmbienceTracks["CHARACTERSELECT"] = "GlueScreenIntro";
+GlueAmbienceTracks["GOBLIN"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["WORGEN"] = "GlueScreenHuman";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -87,6 +89,11 @@ RaceLights = {
         {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.38824,    0.66353,    0.76941,    1.0,    0.00000,    0.00000,    0.00000},
     },
     CHARACTERSELECT =  {
+        {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
+        {1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.55,       0.338625,   0.148825},
+    },
+    GOBLIN = {         
         {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
         {1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
         {1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.55,       0.338625,   0.148825},

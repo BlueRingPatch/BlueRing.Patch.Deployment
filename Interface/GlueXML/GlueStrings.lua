@@ -1,5 +1,18 @@
 -- AUTOMATICALLY GENERATED -- DO NOT EDIT!
 
+ABILITY_INFO_GOBLIN1 = "- Always receive the best possible gold discount, regardless of faction.";
+ABILITY_INFO_GOBLIN2 = "- Alchemy skill increased by 15.";
+ABILITY_INFO_GOBLIN3 = "- Calls in your friend, Gobber, allowing you bank access for 1 min.";
+ABILITY_INFO_GOBLIN4 = "- Launches your belt rockets at an enemy, dealing fire damage.";
+ABILITY_INFO_GOBLIN5 = "- Activates your rocket belt to jump forward. Other effects which slow the rate of falling cannot be used within 10 sec after using this ability.";
+ABILITY_INFO_GOBLIN6 = "- Cash in on a 1% increase to attack and casting speed.";
+ABILITY_INFO_WORGEN1 = "- Increases your resistance to harmful Nature and Shadow effects.";
+ABILITY_INFO_WORGEN2 = "- Activates your true form, increasing current movement speed by an additional 40% for 10 sec.";
+ABILITY_INFO_WORGEN3 = "- Enables Worgen to switch between human and Worgen forms.";
+ABILITY_INFO_WORGEN4 = "- Skinning skill increased by 15 and allows you to skin faster.";
+ABILITY_INFO_WORGEN5 = "- Drop to all fours to run as fast as a wild animal.";
+ABILITY_INFO_WORGEN6 = "- Turn into your currently inactive form.";
+ABILITY_INFO_WORGEN7 = "- Increases critical strike chance by 1%.";
 ABILITY_INFO_BLOODELF1 = "- Enchanting skill increased.";
 ABILITY_INFO_BLOODELF2 = "- May restore mana, energy, or runic power.";
 ABILITY_INFO_BLOODELF3 = "- May silence nearby opponents.";
@@ -677,6 +690,10 @@ QUEUE_TIME_LEFT_UNKNOWN = "Realm is Full\nPosition in queue: %d\nEstimated time:
 QUIT = "Quit";
 RACE = "Race";
 RACE_CHANGE_IN_PROGRESS = "Updating Race...";
+RACE_INFO_GOBLIN = "Originally the slaves of jungle trolls on the Isle of Kezan, goblins were forced to mine kaja’mite ore out of the volcanic bowels of Mount Kajaro. The trolls used this potent mineral for their voodoo rituals, but it had an unexpected effect on the slaves who were in constant contact with it: kaja’mite generated a startling new cunning and intelligence in the goblin race.";
+RACE_INFO_GOBLIN_FEMALE = "Originally the slaves of jungle trolls on the Isle of Kezan, goblins were forced to mine kaja’mite ore out of the volcanic bowels of Mount Kajaro. The trolls used this potent mineral for their voodoo rituals, but it had an unexpected effect on the slaves who were in constant contact with it: kaja’mite generated a startling new cunning and intelligence in the goblin race.";
+RACE_INFO_WORGEN = "Behind the formidable Greymane Wall, a terrible curse has spread throughout the isolated human nation of Gilneas, transforming many of its stalwart citizens into nightmarish beasts known as worgen. The origins of this curse have been fiercely debated, but only recently has the startling truth come to light.";
+RACE_INFO_WORGEN_FEMALE = "Behind the formidable Greymane Wall, a terrible curse has spread throughout the isolated human nation of Gilneas, transforming many of its stalwart citizens into nightmarish beasts known as worgen. The origins of this curse have been fiercely debated, but only recently has the startling truth come to light.";
 RACE_INFO_BLOODELF = "Long ago the exiled high elves founded Quel'Thalas, where they created a magical fount called the Sunwell. Though they were strengthened by its powers, they also grew increasingly dependent on them.|n|nAges later the undead Scourge destroyed the Sunwell and most of the high elf population. Now called blood elves, these scattered refugees are rebuilding Quel'Thalas as they search for a new magic source to satisfy their painful addiction.";
 RACE_INFO_BLOODELF_FEMALE = "Long ago the exiled high elves founded Quel'Thalas, where they created a magical fount called the Sunwell. Though they were strengthened by its powers, they also grew increasingly dependent on them.|n|nAges later the undead Scourge destroyed the Sunwell and most of the high elf population. Now called blood elves, these scattered refugees are rebuilding Quel'Thalas as they search for a new magic source to satisfy their painful addiction.";
 RACE_INFO_DRAENEI = "Driven from their home world of Argus, the honorable draenei fled the Burning Legion for eons before finding a remote planet to settle on. They shared this world with the shamanistic orcs and named it Draenor. In time the Legion corrupted the orcs, who waged war and nearly exterminated the peaceful draenei. A lucky few fled to Azeroth, where they now seek allies in their battle against the Burning Legion.";

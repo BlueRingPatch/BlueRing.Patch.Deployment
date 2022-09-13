@@ -703,7 +703,7 @@ function UnitPopup_HideButtons ()
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			end
 		elseif ( value == "RAID_DIFFICULTY" ) then
-			if ( UnitLevel("player") < 65 and GetRaidDifficulty() == 1 ) then
+			if ( UnitLevel("player") < 40 and GetRaidDifficulty() == 1 ) then
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			end
 		elseif ( value == "MUTE" ) then

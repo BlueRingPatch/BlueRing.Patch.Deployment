@@ -605,7 +605,7 @@ end
 
 function LFDDungeonReadyDialogReward_SetReward(button, dungeonID, rewardIndex)
 	local name, texturePath, quantity = GetLFGDungeonRewardInfo(dungeonID, rewardIndex);
-	if ( texturePath ) then	--Otherwise, we may be waiting on the item data to come from the server.
+	if ( texturePath and button.texture ) then	--Otherwise, we may be waiting on the item data to come from the server.
 		SetPortraitToTexture(button.texture, texturePath);
 	end
 	button.rewardID = rewardIndex;

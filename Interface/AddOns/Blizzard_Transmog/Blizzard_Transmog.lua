@@ -298,7 +298,7 @@ do
 	border:SetBackdropColor(0, 0, 0, 0)
 
 	dr.backgroundTextures = {}
-	for s in ("human,nightelf,dwarf,gnome,draenei,orc,scourge,tauren,troll,bloodelf,deathknight,goblin"):gmatch("%w+") do
+	for s in ("human,nightelf,dwarf,gnome,draenei,orc,scourge,tauren,troll,bloodelf,deathknight,goblin,worgen"):gmatch("%w+") do
 		dr.backgroundTextures[s] = dr:CreateTexture(nil, "BACKGROUND")
 		dr.backgroundTextures[s]:SetTexture("Interface\\AddOns\\Blizzard_Transmog\\images\\"..s)
 		dr.backgroundTextures[s]:SetAllPoints()

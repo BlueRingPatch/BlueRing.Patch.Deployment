@@ -31,6 +31,7 @@ local modelX = { -- male = 2, female = 3
 		Tauren =    {male = -0.75, female = -0.75},
 		Troll =     {male = -0.75, female = -0.75},
 		Goblin =    {male = -0.75, female = -0.75},
+		Worgen = {male = -0.75, female = -0.75},
 	},
 	max = {
 		-- The Alliance
@@ -46,6 +47,7 @@ local modelX = { -- male = 2, female = 3
 		Tauren =    {male = 2.90, female = 2.4},
 		Troll =     {male = 3.0, female = 3.0},
 		Goblin =    {male = 2.6, female = 1.55},
+		Worgen = {male = 2.10, female = 1.9},
 	},
 }
 
@@ -64,6 +66,7 @@ local modelZ = {
 		Tauren =    {male = -0.80, female = -0.50},
 		Troll =     {male = -0.75, female = -0.75},
 		Goblin =    {male = -0.80, female = -0.60},
+		Worgen = {male = -1.05, female = -1.76},
 	},
 	max = {
 		-- The Alliance
@@ -79,6 +82,7 @@ local modelZ = {
 		Tauren =    {male = 0.90, female = 1.35},
 		Troll =     {male = 1.25, female = 1.25},
 		Goblin =    {male = 0.52, female = 0.75},
+		Worgen = {male = 0.78, female = 0.77},
 	},
 }
 
